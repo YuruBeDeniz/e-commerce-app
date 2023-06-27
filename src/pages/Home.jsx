@@ -1,7 +1,10 @@
 import React from 'react'
+import SliderComp from '../components/Home/SliderComp'
 
 export default function Home() {
   return (
-    <div>Home</div>
+    <div>
+     <SliderComp />
+    </div>
   )
 }
