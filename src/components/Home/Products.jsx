@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../redux/productSlice";
+import { getProducts, getCategoryProducts } from "../../redux/productSlice";
 import ReactPaginate from "react-paginate";
 import Loading from "../Loading/Loading";
 import Product from "./Product";
 
-export default function Products() {
+export default function Products({ category }) {
   const dispatch = useDispatch();
   const { products, productsStatus } = useSelector(state => state.products);
 
   console.log("PRODUCTS: ", products)
   
   useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
+    if(category) {
+      dispatch(getCategoryProducts(category));
+    } else {
+      dispatch(getProducts());
+    }   
+  }, [dispatch, category]);
 
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 6
@@ -61,3 +65,8 @@ export default function Products() {
 
 //getProducts dispatch ve useEffect ile çağırdıktan sonra useSelector ile göster
 //state.products buradaki products store'daki productstan geliyor.
+
+//sayfa yüklendiğinde useEffect ve dispatch ile tüm veriler alınıyor. Ancak sadece gelen
+//kategori değerine göre almak istenirse; useEffect kategoriye göre çalışmalı. Kategorideki
+//değer her değiştiğinde veri çekme işlemini useEffect içerisinde tekrar tekrar yapılır, ve gelen 
+//değer tüm ürünleri getirsin ancak kategoriye göre de ürün getirmeli

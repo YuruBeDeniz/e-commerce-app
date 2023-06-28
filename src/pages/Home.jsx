@@ -7,14 +7,14 @@ import Sorting from '../components/Home/Sorting';
 export default function Home() {
   const [sort, setSort] = useState("");
   const [category, setCategory] = useState("");
-  
+
   return (
     <div>
      <SliderComp />
      <Sorting />
      <div className='flex'>
-        <Category />
-        <Products />
+        <Category setCategory={setCategory} />
+        <Products category={category} />
      </div>
     </div>
   )
