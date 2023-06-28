@@ -6,7 +6,7 @@ export default function Category() {
   const dispatch = useDispatch();
   const { categories } = useSelector(state => state.categories);
 
-  console.log(categories)
+  console.log("CATEGORIES", categories)
 
   useEffect(() => {
     dispatch(getCategories())
@@ -14,7 +14,7 @@ export default function Category() {
 
 
   return (
-    <div className='w-1/6 bg-gray-100 p-4'>
+    <div className='w-1/6 bg-gray-100 p-4 max-h-screen'>
       <div className='boder-b pb-1 px-2 text-xl font-bold'>CATEGORIES</div>
       {
         categories?.map((category, i) => (
