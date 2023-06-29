@@ -21,7 +21,7 @@ export const  getCategoryProducts = createAsyncThunk("getCategory", async(catego
 });
 
 export const  getDetailProduct = createAsyncThunk("getProduct", async(id) => {
-    const response = await fetch(`https://fakestoreapi.com/products${id}`);
+    const response = await fetch(`https://fakestoreapi.com/products/${id}`);
     const data = await response.json();
     return data;
 });
